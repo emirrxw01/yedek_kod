@@ -10,13 +10,13 @@ def login_and_get_csrf_token(username, password):
     url = 'https://www.instagram.com/accounts/login/ajax/'
     session = requests.Session()
     
-    # Giriş verileri
+    
     login_payload = {
         'username': username,
         'password': password
     }
     
-    # Giriş isteği gönder
+    
     response = session.post(url, data=login_payload)
     
     if response.status_code == 200 and response.json().get('authenticated'):
@@ -63,7 +63,7 @@ def main():
     username = input("Kullanıcı adınızı girin: ")
     password = input("Şifrenizi girin: ")
     
-    # Giriş yap ve CSRF token'ı al
+    
     csrf_token, session = login_and_get_csrf_token(username, password)
     
     if csrf_token and session:
